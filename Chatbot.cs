@@ -108,5 +108,39 @@ namespace POE_Part3_Prog6221_chatbotapplication
             textBlock.Inlines.Add(messageRun);
             return textBlock;
         }
+
+        //Stores predefined replies associated with specific cybersecurity-related keywords.
+        private void store_replies()
+        {
+            replies.Add("you", new List<string> { "I'm good, thanks and you?" });
+            replies.Add("purpose", new List<string> {
+                "My purpose is to simulate real-life scenarios where users might encounter cyber threats and provide guidance on avoiding common traps." });
+            replies.Add("password", new List<string> {
+                "Passwords need to be at least 12 characters long.",
+                "Use a mix of uppercase, lowercase, numbers, and special characters.",
+                "Enable two-factor authentication.",
+                "Avoid public Wi-Fi and keep software up to date."
+            });
+            replies.Add("phishing", new List<string> {
+                "Phishing tricks you into revealing personal info.",
+                "Check for spelling errors and verify senders.",
+                "Never click suspicious links."
+            });
+            replies.Add("safe browsing", new List<string> {
+                "Use HTTPS websites.",
+                "Use a VPN and antivirus software."
+            });
+            replies.Add("worried", new List<string> { "It's okay to feel that way. Let me know what tip you’d like to stay safe online." });
+            replies.Add("curious", new List<string> { "I’m here to help you understand and give safety tips." });
+            replies.Add("frustrated", new List<string> { "It’s normal to feel that way. Let me offer some online safety tips." });
+            replies.Add("happy", new List<string> { "That’s great! Stay safe and cautious online." });
+            replies.Add("sad", new List<string> { "Sorry to hear that. I’m here with helpful tips to keep you secure online." });
+        }
+
+        //Stores common filler words that should be ignored during keyword matching.
+        private void store_ignore()
+        {
+            ignore.AddRange(new[] { "what", "is", "your", "how", "are", "can", "i", "sports", "tell", "me", "about", "more", "my", "name", "is" });
+        }
     }
 }
