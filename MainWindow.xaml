@@ -125,5 +125,176 @@
 
             </Grid>
             <!-- end of sidebar menu grid -->
+            
+            <!-- main content display -->
+            <Grid
+        Height="450"
+        Width="700"
+        Margin="100,0,0,0">
+
+                <!-- chats grid-->
+                <Grid
+            Height="450"
+            Width="700"
+            x:Name="chats_page"
+            Background="LightSteelBlue">
+
+                    <!-- List view to chats between user and chatbot -->
+                    <ListView
+                Height="300"
+                Width="650"
+                x:Name="chat_chatbot"
+                Margin="0,0,0,140"/>
+
+                    <!-- textbox to collect user input -->
+                    <TextBox 
+                Height="30"
+                Width="400"
+                x:Name="chatbot_user"
+                Margin="100,210,0,0"/>
+
+                    <!-- button for sumit user interaction -->
+                    <Button
+                Height="30"
+                Width="400"
+                Content="SEND"
+                Margin="100,290,0,0"
+                Click="chatbot_button"/>
+
+                </Grid>
+                <!-- end of chats grid -->
+
+                <!-- reminder grid-->
+                <Grid
+            Height="450"
+            Width="700"
+            x:Name="reminder_page"
+            Background="LightSteelBlue"
+            Visibility="Hidden">
+
+                    <!-- List view to append chats -->
+                    <ListView
+                Height="300"
+                Width="650"
+                x:Name="chat_append"
+                Margin="0,0,0,140"
+                MouseDoubleClick="show_chats_MouseDoubleClick"/>
+
+                    <!-- textbox to collect user tasks -->
+                    <TextBox 
+                Height="30"
+                Width="400"
+                x:Name="user_tasks"
+                Margin="100,210,0,0"/>
+
+                    <!-- button for sub-task -->
+                    <Button
+                Height="30"
+                Width="400"
+                Content="SET REMINDER"
+                Margin="100,290,0,0"
+                Click="set_reminder"/>
+
+                </Grid>
+                <!-- end of reminder grid -->
+
+                <!-- quiz grid-->
+                <Grid
+            Height="450"
+            Width="700"
+            x:Name="quiz_page"
+            Background="LightSteelBlue"
+            Visibility="Hidden">
+
+                    <!-- stack  panel-->
+                    <!-- stack panel to cover components as vertical -->
+                    <StackPanel
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Width="600">
+
+                        <!-- add all required components -->
+                        <!-- title of the game -->
+                        <TextBlock
+                    Text="CYBERSECURIY QUIZ[GAME]"
+                    HorizontalAlignment="Center"/>
+
+                        <!-- textblock to display question -->
+                        <TextBlock
+                    Text="Question to be asked ?"
+                    x:Name="DisplayedQuestion"
+                    HorizontalAlignment="Center"/>
+
+                        <!-- buttons with names(adding the 4 buttons for selecting the answer) -->
+                        <Button
+                    x:Name="FirstChoiceButton"
+                    Click="HandleAnswerSelection"
+                    Padding="20"/>
+
+                        <Button
+                    x:Name="SecondChoiceButton"
+                    Click="HandleAnswerSelection"
+                    Padding="20"/>
+
+                        <Button
+                    x:Name="ThirdChoiceButton"
+                    Click="HandleAnswerSelection"
+                    Padding="20"/>
+
+                        <Button
+                    x:Name="FourthChoiceButton"
+                    Click="HandleAnswerSelection"
+                    Padding="20"/>
+
+                        <!-- put the score and the next button -->
+                        <Button
+                    x:Name="NextQuestionButton"
+                    Content="NEXT"
+                    Click="HandleNextQuestion"
+                    Padding="20"
+                    Background="LightSkyBlue"/>
+
+                        <!-- show the score -->
+                        <TextBlock
+                    x:Name="DisplayScore"
+                    HorizontalAlignment="Right"
+                    Text="play game first"/>
+
+                    </StackPanel>
+
+                </Grid>
+                <!-- end of quiz grid -->
+
+                <!-- activity log grid-->
+                <Grid
+            Height="450"
+            Width="700"
+            x:Name="activity_page"
+            Background="LightSteelBlue"
+            Visibility="Hidden">
+
+                    <!-- List view to append chats -->
+                    <ListView
+                Height="300"
+                Width="650"
+                x:Name="activity_append"
+                Margin="0,0,0,140"/>
+
+                    <!-- button for sub-task -->
+                    <Button
+                Height="30"
+                Width="400"
+                Content="SEE ACTIVITY LOG"
+                Margin="100,290,0,0"
+                Click="see_activity"/>
+
+                </Grid>
+                <!-- end of activity log grid -->
+
+            </Grid>
+            <!-- end of main content grid -->
+
         </Grid>
+        <!-- end of the main page grid -->
+    </Grid>
 </Window>
