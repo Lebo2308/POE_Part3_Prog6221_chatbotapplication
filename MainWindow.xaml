@@ -36,7 +36,94 @@
 
         </Grid>
         <!-- end of the logo grid -->
-        
-        
-    </Grid>
+
+        <!-- the main grid to hold the main window -->
+        <Grid
+    Height="450"
+    Width="800"
+    x:Name="main_page"
+    Visibility="Hidden">
+
+            <!-- sidebar menu grid -->
+            <Grid
+        Height="450"
+        Width="100"
+        Margin="0,0,700,0"
+        Background="Blue">
+
+                <!-- button for chatting grid page -->
+                <Button
+            Height="30"
+            Width="90"
+            Content="CHATBOT"
+            Click="chats"
+            Margin="0,0,0,350"
+            Background="DarkCyan"
+            Foreground="Black"
+            BorderBrush="Black"/>
+                <!-- end of button for chatting grid page -->
+
+                <!-- button for reminder grid page -->
+                <Button
+            Height="30"
+            Width="90"
+            Content="REMINDER"
+            Click="reminder"
+            Margin="0,0,0,250"
+            Background="DarkCyan"
+            Foreground="Black"
+            BorderBrush="Black"/>
+                <!-- end of button for chatting grid page -->
+
+                <!-- button for quiz grid page -->
+                <Button
+            Height="30"
+            Width="90"
+            Content="QUIZ"
+            Click="quiz"
+            Margin="0,0,0,150"
+            Background="DarkCyan"
+            Foreground="Black"
+            BorderBrush="Black"/>
+                <!-- end of button for chatting grid page -->
+
+                <!-- button for activity log grid page -->
+                <Button
+            Height="30"
+            Width="90"
+            Content="ACTIVITY LOG"
+            Click="activity"
+            Margin="0,0,0,50"
+            Background="DarkCyan"
+            Foreground="Black"
+            BorderBrush="Black"/>
+                <!-- end of button for chatting grid page -->
+
+                <!-- button to logout  -->
+                <Button
+            Height="30"
+            Width="90"
+            Content="LOGOUT"
+            Click="close_main"
+            Margin="0,50,0,0"
+            Background="DarkCyan"
+            Foreground="Black"
+            BorderBrush="Black"/>
+                <!-- end of button to logout -->
+
+                <!-- button to exit the app -->
+                <Button
+            Height="30"
+            Width="90"
+            Content="EXIT APP"
+            Click="exits"
+            Margin="0,150,0,0"
+            Background="Red"
+            Foreground="White"
+            BorderBrush="Black"/>
+                <!-- end of button to exit the app -->
+
+            </Grid>
+            <!-- end of sidebar menu grid -->
+        </Grid>
 </Window>
