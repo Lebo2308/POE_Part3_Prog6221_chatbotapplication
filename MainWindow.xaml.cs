@@ -449,5 +449,42 @@ namespace POE_Part3_Prog6221_chatbotapplication
             LogActivity($"Answered quiz: \"{quizData[questionIndex].Question}\" | Selected: \"{chosen}\" with score of 9");
 
         }//end of handle answer selection event handler
+
+        //event handler for the next button
+        private void HandleNextQuestion(object sender, RoutedEventArgs e)
+        {
+            //check if the user selected one of the choices
+            if (selectedChoice == null)
+            {
+                //then show error message
+                MessageBox.Show("Choose one of the 4 choices");
+            }
+            else
+            {
+                //then add points and only if correct
+                string chosen = selectedChoice?.Content.ToString();
+                string correct = quizData[questionIndex].CorrectChoice;
+
+                //check if correct
+                if (chosen == correct)
+                {
+                    //then add point
+                    currentScore++;
+                    //then show the score
+                    DisplayScore.Text = "Score : " + currentScore;
+                    //then move to the next index question
+                    questionIndex++;
+                    //show the question again for the next one
+                    showQuiz();
+                }
+                else
+                {
+                    //move to the next question
+                    questionIndex++;
+                    showQuiz();
+                }
+
+            }
+        }//end of next button event handler
     }
 }
