@@ -38,6 +38,9 @@ namespace POE_Part3_Prog6221_chatbotapplication
         private Button selectedChoice = null;//user selection
         private Button correctChoiceButton = null;
 
+        //activity log
+        private List<string> activityLog = new List<string>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -486,5 +489,22 @@ namespace POE_Part3_Prog6221_chatbotapplication
 
             }
         }//end of next button event handler
+
+        //buutton to see the activity
+        private void see_activity(object sender, RoutedEventArgs e)
+        {
+            activity_append.Items.Clear(); // clear any old entries
+            foreach (string entry in activityLog)
+            {
+                activity_append.Items.Add(entry);
+            }
+        }
+
+        // method to add entries to the log
+        private void LogActivity(string entry)
+        {
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            activityLog.Add($"{timestamp} - {entry}");
+        }
     }
 }
