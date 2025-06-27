@@ -146,5 +146,83 @@ namespace POE_Part3_Prog6221_chatbotapplication
             }
             };
         }
+
+        //button to submit the user interaction in the reminder page
+        private void set_reminder(object sender, RoutedEventArgs e)
+        {
+            string userInput = user_tasks.Text.Trim();
+
+            if (string.IsNullOrEmpty(userInput))
+            {
+                MessageBox.Show("Question field is required!");
+                return;
+            }
+
+            // Display user input in listview
+            chat_append.Items.Add("User : " + userInput);
+            LogActivity($"User typed in reminder input: \"{userInput}\"");//to hold for activity log
+            // ADD TASK
+            if (userInput.ToLower().Contains("add task"))
+            {
+                string description = userInput.Replace("add task", "").Trim();
+                hold_task = description;
+
+                DateTime now = DateTime.Now;
+                string date = now.ToString("yyyy-MM-dd");
+                string time = now.ToString("HH:mm");
+
+                chat_append.Items.Add($"Chatbot: Task added - \"{description}\" on, date: {date} at {time}. Would you like a reminder?");
+                LogActivity($"Added a task: \"{description}\" on {date} at {time}");
+            }
+
+            // SET REMINDER
+            else if (userInput.ToLower().Contains("remind"))
+            {
+                if (!string.IsNullOrEmpty(hold_task))
+                {
+                    string days = remind.get_days(userInput);
+                    string response = (days == "today")
+                        ? remind.today_date(hold_task, days)
+                        : remind.get_remindDate(hold_task, days) == "done"
+                            ? "Great, I will remind you in " + days + " days."
+                            : "Failed to set reminder.";
+
+                    chat_append.Items.Add("Chatbot: " + response);
+                    LogActivity($"Set reminder for task: \"{hold_task}\" in {days} days");//to hold for activity log
+                }
+                else
+                {
+                    chat_append.Items.Add("Chatbot: No task was set to remind you.");
+                }
+            }
+            // SHOW REMINDERS
+            else if (userInput.ToLower().Contains("what did you do for me"))
+            {
+                chat_append.Items.Add("Chatbot: Your reminders:");
+                chat_append.Items.Add(remind.get_remind());
+                LogActivity("User viewed their reminders list.");//to hold for activity log
+            }
+
+            chat_append.ScrollIntoView(chat_append.Items[chat_append.Items.Count - 1]);
+            user_tasks.Clear();
+
+        }
+
+        //eventhandle for mousedouble clicking
+        private void show_chats_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            string selected = chat_append.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(selected)) return;
+
+            if (!selected.Contains("STATUS DONE!"))
+            {
+                int index = chat_append.Items.IndexOf(selected);
+                chat_append.Items[index] = selected + " STATUS DONE!";
+            }
+            else
+            {
+                chat_append.Items.Remove(selected);
+            }
+        }
     }
 }
