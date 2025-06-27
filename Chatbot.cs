@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System.Drawing;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace POE_Part3_Prog6221_chatbotapplication
@@ -88,6 +91,22 @@ namespace POE_Part3_Prog6221_chatbotapplication
             }
 
             return responses;
+        }
+
+        //Creates a colored TextBlock for displaying messages in the GUI
+        private TextBlock CreateColoredMessage(string speaker, string message, Color nameColor)
+        {
+            TextBlock textBlock = new TextBlock();
+            Run nameRun = new Run(speaker + ": ")
+            {
+                Foreground = new SolidColorBrush(nameColor),
+                FontWeight = FontWeights.Bold
+            };
+
+            Run messageRun = new Run(message);
+            textBlock.Inlines.Add(nameRun);
+            textBlock.Inlines.Add(messageRun);
+            return textBlock;
         }
     }
 }
