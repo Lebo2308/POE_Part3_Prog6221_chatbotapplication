@@ -419,5 +419,35 @@ namespace POE_Part3_Prog6221_chatbotapplication
             };
 
         }//end of method LoadQuizData method of info
+
+        //event handler to select answer
+        private void HandleAnswerSelection(object sender, RoutedEventArgs e)
+        {
+            //use sender object name to get the selected button
+            selectedChoice = sender as Button;
+
+            string chosen = selectedChoice.Content.ToString();
+
+            //then check with the correct on the current quiz
+            string correct = quizData[questionIndex].CorrectChoice;
+
+            //then check if correct or not by if statement
+            if (chosen == correct)
+            {
+                //then set the button background colour
+                selectedChoice.Background = Brushes.Green;
+                //assigning to hold
+                correctChoiceButton = selectedChoice;
+            }
+            else
+            {
+                //if incorrect
+                selectedChoice.Background = Brushes.DarkRed;
+                correctChoiceButton = selectedChoice;
+            }
+
+            LogActivity($"Answered quiz: \"{quizData[questionIndex].Question}\" | Selected: \"{chosen}\" with score of 9");
+
+        }//end of handle answer selection event handler
     }
 }
