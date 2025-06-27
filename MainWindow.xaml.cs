@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using sound_playing;
 
 namespace POE_Part3_Prog6221_chatbotapplication
 {
@@ -19,6 +20,11 @@ namespace POE_Part3_Prog6221_chatbotapplication
         public MainWindow()
         {
             InitializeComponent();
+
+            // Provide full path to the audio file
+            string audioPath = "C:\\Users\\RC_Student_lab\\source\\repos\\sound_playing\\CYBERREC.wav";
+            voice_greeting greeting = new voice_greeting(audioPath);
+            greeting.PlayGreeting();
         }
     }
 }
