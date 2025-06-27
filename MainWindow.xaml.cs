@@ -9,6 +9,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using sound_playing;
+//import of the NPL
+using Microsoft.ML;
+using Microsoft.ML.Data;
 
 namespace POE_Part3_Prog6221_chatbotapplication
 {
@@ -41,6 +44,25 @@ namespace POE_Part3_Prog6221_chatbotapplication
         //activity log
         private List<string> activityLog = new List<string>();
 
+        //NLP 
+        // Input and output data classes
+        private class Data
+        {
+            public string Text { get; set; }
+            public bool Label { get; set; }
+        }
+
+        private class Prediction
+        {
+            [ColumnName("PredictedLabel")]
+            public bool Prediction { get; set; }
+            public float Probability { get; set; }
+            public float Score { get; set; }
+        }
+
+        private readonly MLContext mlContext;
+        private PredictionEngine<Data, Prediction> predictionEngine;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -58,6 +80,10 @@ namespace POE_Part3_Prog6221_chatbotapplication
             LoadQuizData();
 
             showQuiz();
+
+            //natural processing language
+            mlContext = new MLContext(seed: 0);
+            TrainModel();
         }
 
         //button to open the main page
@@ -505,6 +531,42 @@ namespace POE_Part3_Prog6221_chatbotapplication
         {
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             activityLog.Add($"{timestamp} - {entry}");
+        }
+
+        //implementing the Natural Processing Language
+        private void TrainModel()
+        {
+            var trainData = new[]
+            {
+                new Data { Text = "add a task", Label = true },
+                new Data { Text = "set a reminder", Label = true },
+                new Data { Text = "can you remind me to update my password?", Label = true },
+                new Data { Text = "can i add task to", Label = false }
+            };
+            var dataView = mlContext.Data.LoadFromEnumerable(trainData);
+
+            var pipeline = mlContext.Transforms.Text
+                    .FeaturizeText(outputColumnName: "Features", inputColumnName: nameof(Data.Text))
+                .Append(mlContext.BinaryClassification.Trainers
+                    .SdcaLogisticRegression(labelColumnName: nameof(Data.Label), featureColumnName: "Features"));
+
+            var model = pipeline.Fit(dataView);
+            predictionEngine = mlContext.Model.CreatePredictionEngine<Data, Prediction>(model);
+        }
+
+        private void OnAnalyzeClick(object sender, RoutedEventArgs e)
+        {
+            var inputText = chatbot_user.Text;
+            if (string.IsNullOrWhiteSpace(inputText))
+            {
+                MessageBox.Show("Please enter some text.");
+                return;
+            }
+
+            var result = predictionEngine.Predict(new Data { Text = inputText });
+            chat_chatbot.Text = result.Prediction
+                ? $"Positive  (Probability: {result.Probability:P1})"
+                : $"Negative (Probability: {result.Probability:P1})";
         }
     }
 }
