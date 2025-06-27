@@ -1,6 +1,6 @@
 ﻿namespace POE_Part3_Prog6221_chatbotapplication
 {
-    public class QuizQuestio
+    public class QuizQuestion
     {
             //public getters and setters
             public string Question { get; set; }

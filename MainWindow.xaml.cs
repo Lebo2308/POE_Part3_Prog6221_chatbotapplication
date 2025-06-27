@@ -298,5 +298,126 @@ namespace POE_Part3_Prog6221_chatbotapplication
             }
 
         }//end of clearStyle method
+
+        //method to load the quiz data
+        private void LoadQuizData()
+        {
+            //store info
+            quizData = new List<QuizQuestion>
+            {
+                //adding questions and answers
+                new QuizQuestion
+                { 
+                    //adding the question
+                    Question="What is phishing?",
+                    CorrectChoice="A cyberattack using misleading emails to steal information",
+                    Choices = new List<string>
+                    {
+                        "Encrypting files for security", "Safe password storage","Going to the pond to get fish"
+                    }
+                } ,
+                //adding questions and answers
+                new QuizQuestion
+                { 
+                    //adding the question
+                    Question="What is baiting in social engineering?",
+                    CorrectChoice="Tempting with freebies to get access",
+                    Choices = new List<string>
+                    {
+                        "Guilt-tripping someone","Creating fake surveys","Locking a screen"
+                    }
+                } ,
+                //adding another question
+                new QuizQuestion
+                { 
+                    //adding the question
+                    Question="What is the best response to a fake tech support call?",
+                    CorrectChoice="Hang up immediately",
+                    Choices = new List<string>
+                    {
+                        "Ask for ID","Give fake details","Let them fix your PC"
+                    }
+                },
+                //adding another question
+                new QuizQuestion
+                { 
+                    //adding the question
+                    Question="True or False: Social engineering relies on human interaction rather than technical hacking",
+                    CorrectChoice="True",
+                    Choices = new List<string>
+                    {
+                        "None","Both-True and False","False"
+                    }
+                },
+                //adding another question
+                new QuizQuestion
+                { 
+                    //adding the question
+                    Question="True or False: Public Wi-Fi is safe to use for online banking if the network requires a password.",
+                    CorrectChoice="False",
+                    Choices = new List<string>
+                    {
+                        "True","Neither","Both-True and False"
+                    }
+                },
+                //adding another question
+                new QuizQuestion
+                { 
+                    //adding the question
+                    Question="What’s the safest way to share login info?",
+                    CorrectChoice="Use shared access tools",
+                    Choices = new List<string>
+                    {
+                        "Text it to your friend", "Write it down", "None—just trust them"
+                    }
+                },
+                //adding another question
+                new QuizQuestion
+                { 
+                    //adding the question
+                    Question="How often should you change passwords?",
+                    CorrectChoice="Every 3–6 months",
+                    Choices = new List<string>
+                    {
+                        "Only when forced","Every few years"," Never"
+                    }
+                },
+                //adding another question
+                new QuizQuestion
+                { 
+                    //adding the question
+                    Question="Why is using public Wi-Fi risky?",
+                    CorrectChoice="Exposes your data to hackers",
+                    Choices = new List<string>
+                    {
+                        "Drains your battery","Slows your browsing" , "Blocks websites"
+                    }
+                },
+                //adding another question
+                new QuizQuestion
+                { 
+                    //adding the question
+                    Question="True or False: If a website has a padlock icon in the address bar, it is 100% safe",
+                    CorrectChoice="False",
+                    Choices = new List<string>
+                    {
+                        "True","Neither","Both-True and False"
+                    }
+                },
+                //adding another question
+                new QuizQuestion
+                { 
+                    //adding the question
+                    Question="What does 2FA provide?",
+                    CorrectChoice="A second layer of security",
+                    Choices = new List<string>
+                    {
+                        "Automatic password reset","Easier login ","Password sharing"
+                    }
+                }
+
+            };
+
+        }//end of method LoadQuizData method of info
     }
 }
