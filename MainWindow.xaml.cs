@@ -243,5 +243,49 @@ namespace POE_Part3_Prog6221_chatbotapplication
                 chat_append.Items.Remove(selected);
             }
         }
+
+        //quiz
+        //method to show the quiz data on the buttons
+        private void showQuiz()
+        {
+            //check if user is not done playing
+            if (questionIndex >= quizData.Count)
+            {
+                //show complete message
+                MessageBox.Show("You have completed the game with " + currentScore + "/10 score");
+                //then reset the game
+                currentScore = 0;
+                currentScore = 0;
+                questionIndex = 0;
+                DisplayScore.Text = "";
+                showQuiz();
+                //stop the execute
+                return;
+            }
+
+            //get the current index quiz
+            correctChoiceButton = null;
+            selectedChoice = null;
+
+            // then get all the question values
+            var currentQuiz = quizData[questionIndex];
+
+            //display the question to the user
+            DisplayedQuestion.Text = currentQuiz.Question;
+
+            //add the choices to the buttons
+            var shuffled = currentQuiz.Choices.OrderBy(_ => Guid.NewGuid()).ToList();
+
+            //then add by index
+            FirstChoiceButton.Content = shuffled[0];
+            SecondChoiceButton.Content = shuffled[1];
+            ThirdChoiceButton.Content = shuffled[2];
+            //correct one
+            FourthChoiceButton.Content = currentQuiz.CorrectChoice;
+
+            //calling clear style method 
+            clearStyle();
+
+        }//end of showquiz method
     }
 }
