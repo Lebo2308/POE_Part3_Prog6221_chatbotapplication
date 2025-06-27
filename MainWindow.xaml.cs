@@ -106,5 +106,38 @@ namespace POE_Part3_Prog6221_chatbotapplication
             System.Environment.Exit(0);
 
         }
+
+        //button to submit the user interaction in the chatbot page
+        private void chatbot_button(object sender, RoutedEventArgs e)
+        {
+            string input = chatbot_user.Text.Trim();
+            if (string.IsNullOrEmpty(input)) return;
+
+            var responses = chatbot.ProcessInput(input);
+            foreach (var item in responses)
+            {
+                chat_chatbot.Items.Add(item);
+                if (item.Text.Contains("EXIT"))
+                {
+                    Application.Current.Shutdown();
+                }
+            }
+
+            chatbot_user.Clear();
+
+            LogActivity($"User interacted with chatbot: \"{input}\"");//to hold for activity log
+
+        }
+
+        private TextBlock CreateStartupMessage(string message, Color color)
+        {
+            return new TextBlock
+            {
+                Inlines = {
+                new Run("Chatbot: ") { Foreground = new SolidColorBrush(color), FontWeight = FontWeights.Bold },
+                new Run(message)
+            }
+            };
+        }
     }
 }
