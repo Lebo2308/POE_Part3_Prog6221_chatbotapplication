@@ -17,6 +17,10 @@ namespace POE_Part3_Prog6221_chatbotapplication
     /// </summary>
     public partial class MainWindow : Window
     {
+        //global declaration for all instances and variables
+
+        //chatbot class
+        Chatbot chatbot = new Chatbot();
         public MainWindow()
         {
             InitializeComponent();
