@@ -21,6 +21,13 @@ namespace POE_Part3_Prog6221_chatbotapplication
 
         //chatbot class
         Chatbot chatbot = new Chatbot();
+
+        //reminder
+        //creating an instance of the get_reminder class [ global ]
+        get_reminder remind = new get_reminder();
+        //temp variable
+        string hold_task = string.Empty;
+
         public MainWindow()
         {
             InitializeComponent();
