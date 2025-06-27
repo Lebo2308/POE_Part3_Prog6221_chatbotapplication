@@ -287,5 +287,16 @@ namespace POE_Part3_Prog6221_chatbotapplication
             clearStyle();
 
         }//end of showquiz method
+
+        //method to reset buttons
+        private void clearStyle()
+        {
+            //use foreach to reset
+            foreach (Button choice in new[] { FirstChoiceButton, SecondChoiceButton, ThirdChoiceButton, FourthChoiceButton }) //you can put var or button
+            {
+                choice.Background = Brushes.LightGray;
+            }
+
+        }//end of clearStyle method
     }
 }
