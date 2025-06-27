@@ -28,6 +28,16 @@ namespace POE_Part3_Prog6221_chatbotapplication
         //temp variable
         string hold_task = string.Empty;
 
+        //quiz
+        //List[generics]
+        private List<QuizQuestion> quizData; //the class QuizQuestion will have the getters and setters 
+        //variables
+        private int questionIndex = 0;
+        private int currentScore = 0;
+        //buttons
+        private Button selectedChoice = null;//user selection
+        private Button correctChoiceButton = null;
+
         public MainWindow()
         {
             InitializeComponent();
