@@ -36,6 +36,15 @@ namespace POE_Part3_Prog6221_chatbotapplication
             string audioPath = "C:\\Users\\RC_Student_lab\\source\\repos\\sound_playing\\CYBERREC.wav";
             voice_greeting greeting = new voice_greeting(audioPath);
             greeting.PlayGreeting();
+
+            //chat when log in
+            chat_chatbot.Items.Add(CreateStartupMessage("Welcome to Molebogeng's Cybersecurity Chatbot Program!", Colors.Blue));
+            chat_chatbot.Items.Add(CreateStartupMessage("Please enter your name to start.", Colors.Blue));
+
+            //calling the LoadQuizData method
+            LoadQuizData();
+
+            showQuiz();
         }
 
         //button to open the main page
