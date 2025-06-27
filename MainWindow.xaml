@@ -6,7 +6,37 @@
         xmlns:local="clr-namespace:POE_Part3_Prog6221_chatbotapplication"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid
+        Height="450"
+        Width="800">
 
+        <!-- the logo grid to hold the logo and log in button -->
+        <Grid
+            Height="450"
+            Width="800"
+            x:Name="logo_login"
+            Visibility="Visible">
+
+            <!-- LOGO DISPLAY-->
+            <Image
+                Height="300"
+                Width="400"
+                Margin="0,0,0,150"
+                Source="/image/logo.png"/>
+            <!-- end of displaying the logo -->
+
+            <!-- button to log in the main page -->
+            <Button
+                Height="30"
+                Width="400"
+                Content="LOGIN"
+                Margin="0,200,0,0"
+                Click="open_main"/>
+            <!-- end of button to log in the app -->
+
+        </Grid>
+        <!-- end of the logo grid -->
+        
+        
     </Grid>
 </Window>
